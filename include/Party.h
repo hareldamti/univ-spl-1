@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include "Agent.h"
 using std::string;
 
 class JoinPolicy;
@@ -23,6 +23,8 @@ public:
     int getMandates() const;
     void step(Simulation &s);
     const string &getName() const;
+    void joinCoalition(const Agent &agent, Simulation &s);
+    void addRequest(const Agent &agent);
 
 private:
     int mId;
@@ -30,4 +32,6 @@ private:
     int mMandates;
     JoinPolicy *mJoinPolicy;
     State mState;
+    int mTimer;
+    vector<int> mRequests;
 };
