@@ -1,6 +1,9 @@
 #pragma once
 
-class JoinPolicy {};
+class JoinPolicy {
+    public:
+        virtual Agent &chooseAgent(Simulation &s, vector<int> &requests) = 0;
+};
 
 class MandatesJoinPolicy : public JoinPolicy {};
 
