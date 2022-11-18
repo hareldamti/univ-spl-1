@@ -8,7 +8,7 @@ class Coalition {
     public:
         Coalition(const Party &party);
 
-        vector<const Party> getParties() const;
+        vector<const &Party> getParties() const;
         int getMandates() const;
         
     private:
