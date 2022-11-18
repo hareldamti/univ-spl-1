@@ -1,4 +1,5 @@
 #include "Party.h"
+#include "Simulation.h"
 
 Party::Party(int id, string name, int mandates, JoinPolicy *jp) : mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp), mState(Waiting) 
 {
@@ -37,9 +38,18 @@ void Party::step(Simulation &s)
 }
 
 void Party::joinCoalition(const Agent &agent, Simulation &s) {
-    /// TODO: Implement
+    /*we need a way to access party information thorugh agents*/
+    // int newId = (s.getAgents()).size();
+    // Agent newAgent = Agent(agent);
+    // newAgent.setId(newId);
+    // newAgent.setPartyId(mId);
+    // s.addAgent(newAgent);
+    
+    
+    // TODO: Implement
 }
 
 void Party::addRequest(const Agent &agent){
+    //if(mState == Waiting) mState = CollectingOffers;
     mRequests.push_back(agent.getPartyId());
 }
