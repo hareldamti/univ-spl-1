@@ -12,5 +12,5 @@ class Coalition {
         int getMandates() const;
         
     private:
-        vector<const Party> mParties;
+        vector<const &Party> mParties;
 };
