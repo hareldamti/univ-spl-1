@@ -1,5 +1,4 @@
 #include "Party.h"
-#include "Simulation.h"
 
 Party::Party(int id, string name, int mandates, JoinPolicy *jp) : mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp), mState(Waiting) 
 {
@@ -29,15 +28,20 @@ const string & Party::getName() const
 
 void Party::step(Simulation &s)
 {
-    if (mState == CollectingOffers) 
-        mTimer -= 1;
     if (mTimer == 0) {
         Agent &selectedAgent = (*mJoinPolicy).chooseAgent(s, mRequests);
         joinCoalition(selectedAgent, s);
     }
+    if (mState == CollectingOffers) 
+        mTimer -= 1;
 }
 
 void Party::joinCoalition(const Agent &agent, Simulation &s) {
+    Agent newAgent(agent);
+    ///TODO: change agent's fields
+    s.addAgent(newAgent);
+    agent.getCoalition().addParty(*this);
+    mState = Joined;
     /*we need a way to access party information thorugh agents*/
     // int newId = (s.getAgents()).size();
     // Agent newAgent = Agent(agent);
@@ -50,6 +54,9 @@ void Party::joinCoalition(const Agent &agent, Simulation &s) {
 }
 
 void Party::addRequest(const Agent &agent){
-    //if(mState == Waiting) mState = CollectingOffers;
-    mRequests.push_back(agent.getPartyId());
+    mRequests.push_back(agent.getId());
+    if (mState == Waiting) {
+        mTimer = 3;
+        mState = CollectingOffers;
+    }
 }

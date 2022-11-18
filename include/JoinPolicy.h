@@ -19,3 +19,4 @@ class LastOfferJoinPolicy : public JoinPolicy
         LastOfferJoinPolicy();
         virtual const Agent &chooseAgent(Simulation &s, vector<int> &requests);
 };
+
