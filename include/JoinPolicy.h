@@ -1,10 +1,21 @@
 #pragma once
+#include "Simulation.h"
 
 class JoinPolicy {
     public:
-        virtual Agent &chooseAgent(Simulation &s, vector<int> &requests) = 0;
+        virtual const Agent &chooseAgent(Simulation &s, vector<int> &requests) = 0;
 };
 
-class MandatesJoinPolicy : public JoinPolicy {};
+class MandatesJoinPolicy : public JoinPolicy 
+{
+    public:
+        MandatesJoinPolicy();
+        virtual const Agent &chooseAgent(Simulation &s, vector<int> &requests);
+};
 
-class LastOfferJoinPolicy : public JoinPolicy {};
+class LastOfferJoinPolicy : public JoinPolicy 
+{
+    public:
+        LastOfferJoinPolicy();
+        virtual const Agent &chooseAgent(Simulation &s, vector<int> &requests);
+};

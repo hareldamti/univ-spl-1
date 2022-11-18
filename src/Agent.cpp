@@ -20,3 +20,13 @@ void Agent::step(Simulation &sim)
     Party &selectedParty = (*mSelectionPolicy).chooseParty();
     selectedParty.addRequest(*this);
 }
+
+void Agent::setId(int id)
+{
+    mAgentId = id;
+}
+
+void Agent::setPartyId(int id)
+{
+    mPartyId = id;
+}
