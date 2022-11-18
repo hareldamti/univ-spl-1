@@ -1,6 +1,7 @@
 #include "Agent.h"
+#include "SelectionPolicy.h"
 
-Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) : mAgentId(agentId), mPartyId(partyId), mSelectionPolicy(selectionPolicy)
+Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) :mAgentId(agentId), mPartyId(partyId), mSelectionPolicy(selectionPolicy), mCoalitionId(-1)
 {
     // You can change the implementation of the constructor, but not the signature!
 }
@@ -15,9 +16,14 @@ int Agent::getPartyId() const
     return mPartyId;
 }
 
+int Agent::getCoalitionId()
+{
+    return mCoalitionId;
+}
+
 void Agent::step(Simulation &sim)
 {
-    Party &selectedParty = (*mSelectionPolicy).chooseParty();
+    Party &selectedParty = (*mSelectionPolicy).chooseParty(sim, *this);
     selectedParty.addRequest(*this);
 }
 
@@ -29,4 +35,9 @@ void Agent::setId(int id)
 void Agent::setPartyId(int id)
 {
     mPartyId = id;
+}
+
+void Agent::setCoalitionId(int id)
+{
+    mCoalitionId = id;
 }

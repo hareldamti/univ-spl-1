@@ -11,6 +11,15 @@ Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgen
     // You can change the implementation of the constructor, but not the signature!
 }
 
+void Simulation::initializeCoalitions(){
+    for (int i=0; i<mAgents.size(); i++){
+        Agent &agent = mAgents[i];
+        Coalition coalition(getParty(agent.getPartyId()), i);
+        mCoalitions.push_back(coalition);
+        agent.setCoalitionId(i);
+    }
+}
+
 void Simulation::step()
 {
     for (int i = 0; i < mGraph.getNumVertices(); i++){
@@ -77,7 +86,10 @@ vector<Coalition> Simulation::getCoalitions()
     return mCoalitions;
 }
 
-void Simulation::addAgent(Agent& agent)
+void Simulation::recruitAgent(Agent& agent, Party& newParty)
 {
-    mAgents.push_back(agent);
+    Agent newAgent(agent);
+    newAgent.setId(mAgents.size());
+    newAgent.setPartyId(newParty.getId());
+    mAgents.push_back(newAgent);
 }

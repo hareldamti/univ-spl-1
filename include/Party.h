@@ -21,9 +21,11 @@ public:
     State getState() const;
     void setState(State state);
     int getMandates() const;
+    int getId() const;
     void step(Simulation &s);
     const string &getName() const;
-    void joinCoalition(const Agent &agent, Simulation &s);
+    ///TODO: Delete
+    //void joinCoalition(const Agent &agent, Simulation &s);
     void addRequest(const Agent &agent);
 
 private:

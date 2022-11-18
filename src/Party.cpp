@@ -1,4 +1,6 @@
 #include "Party.h"
+#include "Simulation.h"
+#include "JoinPolicy.h"
 
 Party::Party(int id, string name, int mandates, JoinPolicy *jp) : mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp), mState(Waiting) 
 {
@@ -30,27 +32,13 @@ void Party::step(Simulation &s)
 {
     if (mTimer == 0) {
         Agent &selectedAgent = (*mJoinPolicy).chooseAgent(s, mRequests);
-        joinCoalition(selectedAgent, s);
+        Coalition& coalition = s.getCoalitions()[selectedAgent.getCoalitionId()];
+        coalition.addParty(*this);
+        s.recruitAgent(selectedAgent, *this);
+        mState = Joined;
     }
     if (mState == CollectingOffers) 
         mTimer -= 1;
-}
-
-void Party::joinCoalition(const Agent &agent, Simulation &s) {
-    Agent newAgent(agent);
-    ///TODO: change agent's fields
-    s.addAgent(newAgent);
-    agent.getCoalition().addParty(*this);
-    mState = Joined;
-    /*we need a way to access party information thorugh agents*/
-    // int newId = (s.getAgents()).size();
-    // Agent newAgent = Agent(agent);
-    // newAgent.setId(newId);
-    // newAgent.setPartyId(mId);
-    // s.addAgent(newAgent);
-    
-    
-    // TODO: Implement
 }
 
 void Party::addRequest(const Agent &agent){
@@ -59,4 +47,8 @@ void Party::addRequest(const Agent &agent){
         mTimer = 3;
         mState = CollectingOffers;
     }
+}
+
+int Party::getId() const {
+    return mId;
 }

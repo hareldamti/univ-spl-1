@@ -13,13 +13,15 @@ public:
 
     int getPartyId() const;
     int getId() const;
+    int getCoalitionId();
     void step(Simulation &);
     void setId(int id);
+    void setCoalitionId(int id);
     void setPartyId(int id);
 
 private:
     int mAgentId;
     int mPartyId;
-    // Coalition *mCoalition;
+    int mCoalitionId;
     SelectionPolicy *mSelectionPolicy;
 };

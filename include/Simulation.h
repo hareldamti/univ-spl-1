@@ -5,8 +5,6 @@
 #include "Graph.h"
 #include "Agent.h"
 
-using std::string;
-using std::vector;
 class Coalition;
 
 class Simulation
@@ -15,6 +13,7 @@ public:
     Simulation(Graph g, vector<Agent> agents);
 
     void step();
+    void initializeCoalitions();
     bool shouldTerminate() const;
 
     const Graph &getGraph() const;
@@ -22,7 +21,8 @@ public:
     const Party &getParty(int partyId) const;
     const vector<vector<int>> getPartiesByCoalitions() const;
     vector<Coalition> getCoalitions();
-    void addAgent(Agent& agent);
+    void recruitAgent(Agent& agent, Party& party);
+    
 
 private:
     Graph mGraph;

@@ -1,6 +1,6 @@
 #include "Coalition.h"
 
-Coalition::Coalition(const Party &party)
+Coalition::Coalition(const Party &party, int id) :mId(id)
 {
     mParties.push_back(party);
 }
@@ -17,7 +17,11 @@ int Coalition::getMandates() const
     unsigned int vecsize = mParties.size();
     for(unsigned int i = 0; i < vecsize; i++)
     {
-        mandates +=mParties[i].getMandates();
+        mandates += mParties[i].getMandates();
     }
     return mandates;
+}
+
+void addParty(Party& party){
+    mParties.push_back(party);
 }
