@@ -1,11 +1,16 @@
 #pragma once
 #include <vector>
+#include "Party.h"
 using namespace std;
+
 
 class Coalition {
     public:
-        vector<int> getParties();
-        int getMandates();
+        Coalition(const Party &party);
+
+        vector<const &Party> getParties() const;
+        int getMandates() const;
+        
     private:
-        vector<int> mParties;
+        vector<const &Party> mParties;
 };

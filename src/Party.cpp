@@ -42,11 +42,21 @@ void Party::joinCoalition(const Agent &agent, Simulation &s) {
     s.addAgent(newAgent);
     agent.getCoalition().addParty(*this);
     mState = Joined;
+    /*we need a way to access party information thorugh agents*/
+    // int newId = (s.getAgents()).size();
+    // Agent newAgent = Agent(agent);
+    // newAgent.setId(newId);
+    // newAgent.setPartyId(mId);
+    // s.addAgent(newAgent);
+    
+    
+    // TODO: Implement
 }
 
 void Party::addRequest(const Agent &agent){
-    mRequests.push_back(agent.getPartyId());
-    if (mState == Waiting)
+    mRequests.push_back(agent.getId());
+    if (mState == Waiting) {
         mTimer = 3;
-    mState = CollectingOffers;
+        mState = CollectingOffers;
+    }
 }
