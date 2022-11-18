@@ -64,7 +64,7 @@ const vector<vector<int>> Simulation::getPartiesByCoalitions() const
         
         for(auto & p : coalition.getParties())
         {
-            c.push_back(stoi(p.getName()));
+            c.push_back(p.getId());
         }
 
         PbyC.push_back(c);
