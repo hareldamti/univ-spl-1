@@ -28,18 +28,25 @@ const string & Party::getName() const
 
 void Party::step(Simulation &s)
 {
-    if (mState == CollectingOffers) 
-        mTimer -= 1;
     if (mTimer == 0) {
         Agent &selectedAgent = (*mJoinPolicy).chooseAgent(s, mRequests);
         joinCoalition(selectedAgent, s);
     }
+    if (mState == CollectingOffers) 
+        mTimer -= 1;
 }
 
 void Party::joinCoalition(const Agent &agent, Simulation &s) {
-    /// TODO: Implement
+    Agent newAgent(agent);
+    ///TODO: change agent's fields
+    s.addAgent(newAgent);
+    agent.getCoalition().addParty(*this);
+    mState = Joined;
 }
 
 void Party::addRequest(const Agent &agent){
     mRequests.push_back(agent.getPartyId());
+    if (mState == Waiting)
+        mTimer = 3;
+    mState = CollectingOffers;
 }
