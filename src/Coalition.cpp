@@ -5,10 +5,9 @@ Coalition::Coalition(const Party &party, int id) :mId(id)
     mParties.push_back(party);
 }
 
-vector<const Party> Coalition::getParties() const
+vector<int>& Coalition::getPartiesIds() const
 {
-    vector<const Party> coalMembers = vector<const Party>(mParties);
-    return coalMembers;
+    return mPartiesIds;
 }
 
 int Coalition::getMandates() const
@@ -22,6 +21,6 @@ int Coalition::getMandates() const
     return mandates;
 }
 
-void addParty(Party& party){
-    mParties.push_back(party);
+void addParty(int partyId){
+    mParties.push_back(partyId);
 }

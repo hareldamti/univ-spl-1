@@ -2,7 +2,7 @@
 
 MandatesSelectionPolicy::MandatesSelectionPolicy(){}
 
-const Party& MandatesSelectionPolicy::chooseParty(Simulation &s, Agent &agent)
+const int MandatesSelectionPolicy::choosePartyId(Simulation &s, Agent &agent)
 {
     vector<int> *neighbors = s.getGraph().getNeighborsIds(agent.getPartyId());
     
@@ -19,14 +19,12 @@ const Party& MandatesSelectionPolicy::chooseParty(Simulation &s, Agent &agent)
 
     delete neighbors;
     
-    ///TODO: check if reference can be NULL
-    if (currPartyId == -1) return NULL;
     return s.getParty(currPartyId);
 }
 
 EdgeWeightSelectionPolicy::EdgeWeightSelectionPolicy(){}
 
-const Agent& EdgeWeightSelectionPolicy::chooseParty(Simulation &s, Agent &agent)
+const int EdgeWeightSelectionPolicy::choosePartyId(Simulation &s, Agent &agent)
 {
     int v = agent.getPartyId();
     vector<int> *neighbors = s.getGraph().getNeighborsIds(v);
@@ -44,7 +42,5 @@ const Agent& EdgeWeightSelectionPolicy::chooseParty(Simulation &s, Agent &agent)
 
     delete neighbors;
     
-    ///TODO: check if reference can be NULL
-    if (currPartyId == -1) return NULL;
-    return s.getParty(currPartyId);
+    return currPartyId;
 }

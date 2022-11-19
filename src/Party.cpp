@@ -33,7 +33,7 @@ void Party::step(Simulation &s)
     if (mTimer == 0) {
         Agent &selectedAgent = (*mJoinPolicy).chooseAgent(s, mRequests);
         Coalition& coalition = s.getCoalitions()[selectedAgent.getCoalitionId()];
-        coalition.addParty(*this);
+        coalition.addParty(mId);
         s.recruitAgent(selectedAgent, *this);
         mState = Joined;
     }

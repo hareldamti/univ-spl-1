@@ -69,13 +69,7 @@ const vector<vector<int>> Simulation::getPartiesByCoalitions() const
     vector<vector<int>> PbyC;
     for(const Coalition & coalition: mCoalitions)
     {
-        vector<int> c;
-        
-        for(auto & p : coalition.getParties())
-        {
-            c.push_back(p.getId());
-        }
-
+        vector<int> c(coalition.getPartiesIds());
         PbyC.push_back(c);
     }
     return PbyC;
