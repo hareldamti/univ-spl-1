@@ -14,7 +14,7 @@ Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgen
 void Simulation::initializeCoalitions(){
     for (int i=0; i<mAgents.size(); i++){
         Agent &agent = mAgents[i];
-        Coalition coalition(getParty(agent.getPartyId()), i);
+        Coalition coalition(agent.getPartyId(), i);
         mCoalitions.push_back(coalition);
         agent.setCoalitionId(i);
     }
@@ -37,10 +37,11 @@ bool Simulation::shouldTerminate() const
     // TODO implement this method
     if(mAgents.size() == mGraph.getNumVertices()) return true;
 
-    for(auto & coalition: mCoalitions)
+    for(Coalition coalition: mCoalitions)
     {
-        if(coalition.getMandates() >= 61)
+        if(coalition.getMandates(*this) >= 61)
             return true;
+            
     }
     
     return false;

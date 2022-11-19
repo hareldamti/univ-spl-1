@@ -13,7 +13,7 @@ public:
 
     int getPartyId() const;
     int getId() const;
-    int getCoalitionId();
+    int getCoalitionId() const;
     void step(Simulation &);
     void setId(int id);
     void setCoalitionId(int id);

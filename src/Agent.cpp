@@ -17,7 +17,7 @@ int Agent::getPartyId() const
     return mPartyId;
 }
 
-int Agent::getCoalitionId()
+int Agent::getCoalitionId() const
 {
     return mCoalitionId;
 }
