@@ -17,7 +17,7 @@ LastOfferJoinPolicy* LastOfferJoinPolicy::clone() { return new LastOfferJoinPoli
 const Agent& MandatesJoinPolicy::chooseAgent(Simulation &s, vector<int> &requests)
 {
     int currAgentId = -1, currMandates = -1;
-    for(long unsigned int i = 0; i < requests.size(); i++){
+    for(int i : requests){
         int coalitionId = (s.getAgents()[requests[i]]).getCoalitionId();
         int iMandates = s.getCoalitions()[coalitionId].getMandates();
         if (iMandates > currMandates)
@@ -33,6 +33,7 @@ const Agent& MandatesJoinPolicy::chooseAgent(Simulation &s, vector<int> &request
 const Agent& LastOfferJoinPolicy::chooseAgent(Simulation &s, vector<int> &requests)
 {
     int agentId = requests[requests.size()-1];
+
     return s.getAgents()[agentId];
 }
 

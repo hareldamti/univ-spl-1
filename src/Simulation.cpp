@@ -1,5 +1,9 @@
 #include "Simulation.h"
 
+///TODO: DEBUG
+#include <iostream>
+using namespace std;
+
 
 Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents), mCoalitions()
 {
@@ -25,20 +29,16 @@ void Simulation::step()
     for (Agent &agent : mAgents){
         agent.step(*this);
     }
-
 }
 
 bool Simulation::shouldTerminate() const
 {
-    if(mAgents.size() == mGraph.getNumVertices()) return true;
+    if(mAgents.size() == mGraph.getNumVertices())
+        return true;
 
     for(const Coalition& coalition: mCoalitions)
-    {
         if(coalition.getMandates() >= 61)
             return true;
-            
-    }
-    
     return false;
 }
 

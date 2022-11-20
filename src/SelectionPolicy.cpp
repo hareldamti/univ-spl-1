@@ -35,11 +35,19 @@ const int MandatesSelectionPolicy::choosePartyId(Simulation &s, Agent &agent)
     int currPartyId = -1, currMandates = -1;
     for (int u : *neighbors)
     {
-        int uMandates = s.getParty_(u).getMandates();
-        if (uMandates > currMandates)
+        Party& p = s.getParty_(u);
+        if (p.getState() != Joined)
         {
-            currPartyId = u;
-            currMandates = uMandates;
+            bool requested = false;
+            for (int idx : p.getRequests()) if (idx == agent.getId()) requested = true;
+            if (!requested) {
+                int uMandates = p.getMandates();
+                if (uMandates > currMandates)
+                {
+                    currPartyId = u;
+                    currMandates = uMandates;
+                }
+            }
         }
     }
 
@@ -55,14 +63,21 @@ const int EdgeWeightSelectionPolicy::choosePartyId(Simulation &s, Agent &agent)
     int currPartyId = -1, currWeight = -1;
     for (int u : *neighbors)
     {
-        int uWeight = s.getGraph().getEdgeWeight(v, u);
-        if (uWeight > currWeight)
+        Party& p = s.getParty_(u);
+        if (p.getState() != Joined)
         {
-            currPartyId = u;
-            currWeight = uWeight;
+            bool requested = false;
+            for (int idx : p.getRequests()) if (idx == agent.getId()) requested = true;
+            if (!requested) {
+                int uWeight = s.getGraph().getEdgeWeight(v, u);
+                if (uWeight > currWeight)
+                {
+                    currPartyId = u;
+                    currWeight = uWeight;
+                }
+            }
         }
     }
-
     delete neighbors;
     
     return currPartyId;

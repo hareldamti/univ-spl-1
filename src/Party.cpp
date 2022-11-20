@@ -58,19 +58,18 @@ Party& Party::operator=(Party &&other){
 }
 
 
-
-
 void Party::step(Simulation &s)
 {
-    if (mTimer == 0) {
-        const Agent &selectedAgent = (*mJoinPolicy).chooseAgent(s, mRequests);
-        Coalition& coalition = s.getCoalitions()[selectedAgent.getCoalitionId()];
-        coalition.addParty(s, mId);
-        s.recruitAgent(selectedAgent, *this);
-        mState = Joined;
-    }
-    if (mState == CollectingOffers) 
+    if (mState == CollectingOffers) {
         mTimer -= 1;
+        if (mTimer == 0) {
+            const Agent &selectedAgent = (*mJoinPolicy).chooseAgent(s, mRequests);
+            Coalition& coalition = s.getCoalitions()[selectedAgent.getCoalitionId()];
+            coalition.addParty(s, mId);
+            s.recruitAgent(selectedAgent, *this);
+            mState = Joined;
+        }
+    }
 }
 
 void Party::addRequest(const Agent &agent){
