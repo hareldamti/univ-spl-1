@@ -7,6 +7,7 @@ using std::endl;
 
 int main(int argc, char **argv)
 {
+    
     if (argc != 2)
     {
         cout << "usage: " << argv[0] << " <config_path>" << endl;
@@ -19,6 +20,7 @@ int main(int argc, char **argv)
 
     // run simulation and store json state after each iteration
     vector<json> outPerIter = {Parser::makeJson(simulation)};
+    simulation.initializeCoalitions();
     while (!simulation.shouldTerminate())
     {
         simulation.step();
@@ -29,6 +31,6 @@ int main(int argc, char **argv)
     const string output_path = config_path.substr(0, config_path.find_last_of('.')) + ".out";
     std::ofstream outputFile(output_path);
     outputFile << std::setw(4) << json(outPerIter) << endl;
-
+    
     return 0;
 }

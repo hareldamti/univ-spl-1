@@ -1,4 +1,6 @@
 #include "Coalition.h"
+#include "Simulation.h"
+#include "Party.h"
 
 Coalition::Coalition(int partyId, int id) :mId(id)
 {
@@ -10,7 +12,7 @@ vector<int> Coalition::getPartiesIds() const
     return mPartiesIds;
 }
 
-int Coalition::getMandates(const Simulation &sim)
+int Coalition::getMandates(const Simulation &sim) const
 {
     int mandates = 0;
     unsigned int vecsize = mPartiesIds.size();

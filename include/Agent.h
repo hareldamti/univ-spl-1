@@ -1,12 +1,9 @@
 #pragma once
 
-#include <vector>
-#include "Graph.h"
-#include "Coalition.h"
-#include "Simulation.h"
 
+class Graph;
+class Coalition;
 class Simulation;
-
 class SelectionPolicy;
 
 class Agent

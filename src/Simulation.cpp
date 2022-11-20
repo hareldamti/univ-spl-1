@@ -1,8 +1,9 @@
 #include "Simulation.h"
 
 
-Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents) 
+Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents)
 {
+    mCoalitions = vector<Coalition>();
     // You can change the implementation of the constructor, but not the signature!
 }
 
@@ -32,7 +33,7 @@ bool Simulation::shouldTerminate() const
     // TODO implement this method
     if(mAgents.size() == mGraph.getNumVertices()) return true;
 
-    for(Coalition coalition: mCoalitions)
+    for(const Coalition& coalition: mCoalitions)
     {
         if(coalition.getMandates(*this) >= 61)
             return true;
@@ -76,7 +77,7 @@ const vector<vector<int>> Simulation::getPartiesByCoalitions() const
     return PbyC;
 }
 
-vector<Coalition> Simulation::getCoalitions()
+vector<Coalition>& Simulation::getCoalitions()
 {
     return mCoalitions;
 }
