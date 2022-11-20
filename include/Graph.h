@@ -13,7 +13,8 @@ public:
     int getEdgeWeight(int v1, int v2) const;
     int getNumVertices() const;
     const Party &getParty(int partyId) const;
-    vector<int> *getNeighborsIds(int v);
+    Party& getParty_(int partyId) const;
+    vector<int> *getNeighborsIds(int v) const;
 private:
     vector<Party> mVertices;
     vector<vector<int>> mEdges;

@@ -26,7 +26,7 @@ void Agent::step(Simulation &sim)
     int selectedPartyId = (*mSelectionPolicy).choosePartyId(sim, *this);
     if (selectedPartyId != -1) 
         ///TODO: change const in getParty signature
-        sim.getParty(selectedPartyId).addRequest(*this);
+        sim.getParty_(selectedPartyId).addRequest(*this);
     
 }
 

@@ -18,9 +18,10 @@ public:
     const Graph &getGraph() const;
     const vector<Agent> &getAgents() const;
     const Party &getParty(int partyId) const;
+    Party& getParty_(int partyId) const;
     const vector<vector<int>> getPartiesByCoalitions() const;
     vector<Coalition> getCoalitions();
-    void recruitAgent(Agent& agent, Party& party);
+    void recruitAgent(const Agent& agent, Party& party);
     
 
 private:

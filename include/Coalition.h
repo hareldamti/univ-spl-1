@@ -11,7 +11,7 @@ class Coalition {
         Coalition(int partyId, int id);
         vector<int> getPartiesIds() const;
         int mId;
-        int getMandates(Simulation &sim);
+        int getMandates(const Simulation &sim);
         void addParty(int partyId);
         
     private:
