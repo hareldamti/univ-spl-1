@@ -27,7 +27,6 @@ void Agent::step(Simulation &sim)
     if (selectedPartyId != -1) 
         ///TODO: change const in getParty signature
         sim.getParty_(selectedPartyId).addRequest(*this);
-    
 }
 
 void Agent::setId(int id)

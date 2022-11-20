@@ -22,8 +22,12 @@ const Agent& MandatesJoinPolicy::chooseAgent(Simulation &s, vector<int> &request
     return s.getAgents()[currAgentId];
 }
 
+MandatesJoinPolicy::~MandatesJoinPolicy() {}
+
 const Agent& LastOfferJoinPolicy::chooseAgent(Simulation &s, vector<int> &requests)
 {
     int agentId = requests[requests.size()-1];
     return s.getAgents()[agentId];
 }
+
+LastOfferJoinPolicy::~LastOfferJoinPolicy() {}

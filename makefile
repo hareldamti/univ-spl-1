@@ -1,4 +1,4 @@
-CFLAGS = -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o
+CFLAGS = -g -Wall -Weffc++ -std=c++11 -Iinclude -o
 
 all: clean bin/cRace
 
@@ -24,7 +24,7 @@ bin/Simulation.o: src/Simulation.cpp
 	g++ $(CFLAGS) bin/Simulation.o src/Simulation.cpp
 
 bin/Coalition.o: src/Coalition.cpp
-	g++ $(CFLAGS) bin/Coalition.o 
+	g++ $(CFLAGS) bin/Coalition.o
 
 bin/JoinPolicy.o: src/JoinPolicy.cpp
 	g++ $(CFLAGS) bin/JoinPolicy.o

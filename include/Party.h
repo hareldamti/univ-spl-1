@@ -29,8 +29,6 @@ public:
     int getId() const;
     void step(Simulation &s);
     const string &getName() const;
-    ///TODO: Delete
-    //void joinCoalition(const Agent &agent, Simulation &s);
     void addRequest(const Agent &agent);
     JoinPolicy * getJoinPolicy() const;
     const vector<int>& getRequests() const;

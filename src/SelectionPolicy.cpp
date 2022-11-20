@@ -23,6 +23,8 @@ const int MandatesSelectionPolicy::choosePartyId(Simulation &s, Agent &agent)
     return currPartyId;
 }
 
+MandatesSelectionPolicy::~MandatesSelectionPolicy(){}
+
 EdgeWeightSelectionPolicy::EdgeWeightSelectionPolicy(){}
 
 const int EdgeWeightSelectionPolicy::choosePartyId(Simulation &s, Agent &agent)
@@ -45,3 +47,5 @@ const int EdgeWeightSelectionPolicy::choosePartyId(Simulation &s, Agent &agent)
     
     return currPartyId;
 }
+
+EdgeWeightSelectionPolicy::~EdgeWeightSelectionPolicy(){}
