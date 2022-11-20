@@ -1,20 +1,22 @@
 #pragma once
+class Simulation;
+class Agent;
 
 class SelectionPolicy {
     public:
-        virtual int choosePartyId(Simulation &s, Agent &agent) = 0;
+        virtual const int choosePartyId(Simulation &s, Agent &agent) = 0;
 
 };
 
 class MandatesSelectionPolicy: public SelectionPolicy{
     public:
         MandatesSelectionPolicy();
-        virtual int choosePartyId(Simulation &s, Agent &agent);
+        virtual const int choosePartyId(Simulation &s, Agent &agent);
 
 };
 
 class EdgeWeightSelectionPolicy: public SelectionPolicy{
     public:
         EdgeWeightSelectionPolicy();
-        virtual int choosePartyId(Simulation &s, Agent &agent);
+        virtual const int choosePartyId(Simulation &s, Agent &agent);
 };

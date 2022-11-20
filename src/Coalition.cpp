@@ -1,26 +1,26 @@
 #include "Coalition.h"
 
-Coalition::Coalition(const Party &party, int id) :mId(id)
+Coalition::Coalition(int partyId, int id) :mId(id)
 {
-    mParties.push_back(party);
+    mPartiesIds.push_back(partyId);
 }
 
-vector<int>& Coalition::getPartiesIds() const
+vector<int> Coalition::getPartiesIds() const
 {
     return mPartiesIds;
 }
 
-int Coalition::getMandates() const
+int Coalition::getMandates(Simulation &sim)
 {
     int mandates = 0;
-    unsigned int vecsize = mParties.size();
+    unsigned int vecsize = mPartiesIds.size();
     for(unsigned int i = 0; i < vecsize; i++)
     {
-        mandates += mParties[i].getMandates();
+        mandates += sim.getParty(mPartiesIds[i]).getMandates();
     }
     return mandates;
 }
 
-void addParty(int partyId){
-    mParties.push_back(partyId);
+void Coalition::addParty(int partyId){
+    mPartiesIds.push_back(partyId);
 }
