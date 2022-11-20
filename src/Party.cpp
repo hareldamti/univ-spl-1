@@ -8,6 +8,11 @@ Party::Party(int id, string name, int mandates, JoinPolicy *jp) : mId(id), mName
     mRequests = vector<int>(0);
 }
 
+Party::Party(const Party &other) : mId(other.getId()), mName(other.getName()), mMandates(other.getMandates()), mJoinPolicy(other.getJoinPolicy())
+{
+    mRequests = vector<int>(other.getRequests());
+}
+
 State Party::getState() const
 {
     return mState;
@@ -31,7 +36,7 @@ const string & Party::getName() const
 void Party::step(Simulation &s)
 {
     if (mTimer == 0) {
-        Agent &selectedAgent = (*mJoinPolicy).chooseAgent(s, mRequests);
+        const Agent &selectedAgent = (*mJoinPolicy).chooseAgent(s, mRequests);
         Coalition& coalition = s.getCoalitions()[selectedAgent.getCoalitionId()];
         coalition.addParty(mId);
         s.recruitAgent(selectedAgent, *this);
@@ -47,6 +52,16 @@ void Party::addRequest(const Agent &agent){
         mTimer = 3;
         mState = CollectingOffers;
     }
+}
+
+JoinPolicy * Party::getJoinPolicy() const
+{
+    return mJoinPolicy;
+}
+
+const vector<int>& Party::getRequests() const
+{
+    return mRequests;
 }
 
 int Party::getId() const {

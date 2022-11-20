@@ -10,7 +10,7 @@ vector<int> Coalition::getPartiesIds() const
     return mPartiesIds;
 }
 
-int Coalition::getMandates(Simulation &sim)
+int Coalition::getMandates(const Simulation &sim)
 {
     int mandates = 0;
     unsigned int vecsize = mPartiesIds.size();

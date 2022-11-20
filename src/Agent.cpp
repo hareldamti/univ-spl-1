@@ -1,5 +1,4 @@
 #include "Agent.h"
-#include "Simulation.h"
 #include "SelectionPolicy.h"
 
 Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) :mAgentId(agentId), mPartyId(partyId), mSelectionPolicy(selectionPolicy), mCoalitionId(-1)
@@ -27,7 +26,7 @@ void Agent::step(Simulation &sim)
     int selectedPartyId = (*mSelectionPolicy).choosePartyId(sim, *this);
     if (selectedPartyId != -1) 
         ///TODO: change const in getParty signature
-        sim.getParty(selectedPartyId).addRequest(*this);
+        sim.getParty_(selectedPartyId).addRequest(*this);
     
 }
 

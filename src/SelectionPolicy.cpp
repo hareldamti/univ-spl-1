@@ -11,7 +11,7 @@ const int MandatesSelectionPolicy::choosePartyId(Simulation &s, Agent &agent)
     int currPartyId = -1, currMandates = -1;
     for (int u : *neighbors)
     {
-        int uMandates = s.getParty(u).getMandates();
+        int uMandates = s.getParty_(u).getMandates();
         if (uMandates > currMandates)
         {
             currPartyId = u;
@@ -20,8 +20,7 @@ const int MandatesSelectionPolicy::choosePartyId(Simulation &s, Agent &agent)
     }
 
     delete neighbors;
-    
-    return s.getParty(currPartyId);
+    return currPartyId;
 }
 
 EdgeWeightSelectionPolicy::EdgeWeightSelectionPolicy(){}

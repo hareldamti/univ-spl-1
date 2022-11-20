@@ -25,7 +25,12 @@ const Party &Graph::getParty(int partyId) const
     return mVertices[partyId];
 }
 
-vector<int> *Graph::getNeighborsIds(int v)
+Party &Graph::getParty_(int partyId) const
+{
+    return mVertices[partyId];
+}
+
+vector<int> *Graph::getNeighborsIds(int v) const
 {
     vector<int> *neighbors = new vector<int>(0);
     for (int u = 0; u < mVertices.size(); u++)

@@ -16,7 +16,12 @@ enum State
 class Party
 {
 public:
-    Party(int id, string name, int mandates, JoinPolicy *); 
+    Party(int id, string name, int mandates, JoinPolicy *);
+    Party(const Party &other);
+    Party(Party&& other);
+    Party& operator=(const Party& other);
+    Party& operator=(Party&& other);
+    
 
     State getState() const;
     void setState(State state);
@@ -27,6 +32,8 @@ public:
     ///TODO: Delete
     //void joinCoalition(const Agent &agent, Simulation &s);
     void addRequest(const Agent &agent);
+    JoinPolicy * getJoinPolicy() const;
+    const vector<int>& getRequests() const;
 
 private:
     int mId;
