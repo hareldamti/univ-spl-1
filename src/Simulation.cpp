@@ -1,8 +1,9 @@
 #include "Simulation.h"
 
 
-Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents), mCoalitions(0)
+Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents)
 {
+    mCoalitions = vector<Coalition>();
     // You can change the implementation of the constructor, but not the signature!
 }
 

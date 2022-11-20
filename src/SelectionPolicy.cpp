@@ -1,6 +1,8 @@
 #include "SelectionPolicy.h"
 #include "Simulation.h"
 
+SelectionPolicy::~SelectionPolicy(){}
+
 MandatesSelectionPolicy::MandatesSelectionPolicy(){}
 
 const int MandatesSelectionPolicy::choosePartyId(Simulation &s, Agent &agent)

@@ -3,6 +3,7 @@
 using namespace std;
 
 class Party;
+class Simulation;
 
 class Coalition {
     public:

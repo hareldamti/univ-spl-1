@@ -6,10 +6,15 @@
 Party::Party(int id, string name, int mandates, JoinPolicy *jp) : mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp), mState(Waiting) 
 {
     // You can change the implementation of the constructor, but not the signature!
-    mRequests = vector<int>(0);
+    mRequests = vector<int>();
 }
 
 Party::Party(const Party &other) : mId(other.getId()), mName(other.getName()), mMandates(other.getMandates()), mJoinPolicy(other.getJoinPolicy())
+{
+    mRequests = vector<int>(other.getRequests());
+}
+
+Party::Party(Party &&other) : mId(other.getId()), mName(other.getName()), mMandates(other.getMandates()), mJoinPolicy(other.getJoinPolicy())
 {
     mRequests = vector<int>(other.getRequests());
 }

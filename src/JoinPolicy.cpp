@@ -2,8 +2,9 @@
 #include "Simulation.h"
 #include "Agent.h"
 
-LastOfferJoinPolicy::LastOfferJoinPolicy(){}
+JoinPolicy::~JoinPolicy(){}
 
+LastOfferJoinPolicy::LastOfferJoinPolicy(){}
 
 MandatesJoinPolicy::MandatesJoinPolicy(){}
 const Agent& MandatesJoinPolicy::chooseAgent(Simulation &s, vector<int> &requests)
