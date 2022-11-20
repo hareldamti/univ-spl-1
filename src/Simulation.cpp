@@ -32,7 +32,7 @@ bool Simulation::shouldTerminate() const
     // TODO implement this method
     if(mAgents.size() == mGraph.getNumVertices()) return true;
 
-    for(Coalition coalition: mCoalitions)
+    for(const Coalition& coalition: mCoalitions)
     {
         if(coalition.getMandates(*this) >= 61)
             return true;
