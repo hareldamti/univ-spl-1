@@ -1,9 +1,9 @@
 #pragma once
 #include <vector>
-#include "Party.h"
+
+class Simulation;
 
 using std::vector;
-class Party;
 
 class Graph
 {

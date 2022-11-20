@@ -1,6 +1,7 @@
 #include "Party.h"
-#include "Simulation.h"
+#include "Coalition.h"
 #include "JoinPolicy.h"
+#include "Simulation.h"
 
 Party::Party(int id, string name, int mandates, JoinPolicy *jp) : mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp), mState(Waiting) 
 {

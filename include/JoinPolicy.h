@@ -1,5 +1,8 @@
 #pragma once
-#include "Simulation.h"
+
+class Party;
+class Simulation;
+class Agent;
 
 class JoinPolicy {
     public:

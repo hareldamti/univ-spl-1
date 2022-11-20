@@ -1,4 +1,6 @@
 #include "JoinPolicy.h"
+#include "Simulation.h"
+#include "Agent.h"
 
 LastOfferJoinPolicy::LastOfferJoinPolicy(){}
 

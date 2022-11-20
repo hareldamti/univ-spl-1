@@ -1,6 +1,5 @@
 #include "SelectionPolicy.h"
-#include <vector>
-#include "Agent.h"
+#include "Simulation.h"
 
 MandatesSelectionPolicy::MandatesSelectionPolicy(){}
 

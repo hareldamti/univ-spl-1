@@ -1,7 +1,7 @@
 #include "Simulation.h"
 
 
-Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents) 
+Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents), mCoalitions(0)
 {
     // You can change the implementation of the constructor, but not the signature!
 }
@@ -76,7 +76,7 @@ const vector<vector<int>> Simulation::getPartiesByCoalitions() const
     return PbyC;
 }
 
-vector<Coalition> Simulation::getCoalitions()
+vector<Coalition>& Simulation::getCoalitions()
 {
     return mCoalitions;
 }

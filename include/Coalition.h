@@ -1,7 +1,5 @@
 #pragma once
 #include <vector>
-#include "Party.h"
-#include "Simulation.h"
 using namespace std;
 
 class Party;

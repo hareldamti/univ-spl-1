@@ -1,4 +1,6 @@
 #include "Coalition.h"
+#include "Simulation.h"
+#include "Party.h"
 
 Coalition::Coalition(int partyId, int id) :mId(id)
 {
