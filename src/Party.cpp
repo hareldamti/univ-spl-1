@@ -3,48 +3,69 @@
 #include "JoinPolicy.h"
 #include "Simulation.h"
 
-Party::Party(int id, string name, int mandates, JoinPolicy *jp) : mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp), mState(Waiting) 
-{
-    // You can change the implementation of the constructor, but not the signature!
-    mRequests = vector<int>();
+Party::Party(int id, string name, int mandates, JoinPolicy *jp) :
+    mId(id),
+    mName(name),
+    mMandates(mandates),
+    mJoinPolicy(jp),
+    mState(Waiting),
+    mTimer(3),
+    mRequests(){}
+
+Party::Party(const Party &other) :
+    mId(other.getId()),
+    mName(other.getName()),
+    mMandates(other.getMandates()),
+    mJoinPolicy(other.getJoinPolicy().clone()),
+    mState(other.getState()),
+    mTimer(other.getTimer()),
+    mRequests(other.getRequests()){}
+
+
+Party::Party(Party &&other) :
+    mId(other.getId()),
+    mName(other.getName()),
+    mMandates(other.getMandates()),
+    mJoinPolicy(other.getJoinPolicy().clone()),
+    mState(other.getState()),
+    mTimer(other.getTimer()),
+    mRequests(other.getRequests()){}
+
+
+Party& Party::operator=(const Party &other){
+    mId = other.getId();
+    mName = other.getName();
+    mMandates = other.getMandates();
+    if (mJoinPolicy != nullptr) delete mJoinPolicy;
+    mJoinPolicy = other.getJoinPolicy().clone();
+    mState = other.getState();
+    mTimer = other.getTimer();
+    mRequests = other.getRequests();
+    return *this;
 }
 
-Party::Party(const Party &other) : mId(other.getId()), mName(other.getName()), mMandates(other.getMandates()), mJoinPolicy(other.getJoinPolicy())
-{
-    mRequests = vector<int>(other.getRequests());
+Party& Party::operator=(Party &&other){
+    mId = other.getId();
+    mName = other.getName();
+    mMandates = other.getMandates();
+    if (mJoinPolicy != nullptr) delete mJoinPolicy;
+    mJoinPolicy = other.getJoinPolicy().clone();
+    mState = other.getState();
+    mTimer = other.getTimer();
+    mRequests = other.getRequests();
+    other.dismissJoinPolicy();
+    return *this;
 }
 
-Party::Party(Party &&other) : mId(other.getId()), mName(other.getName()), mMandates(other.getMandates()), mJoinPolicy(other.getJoinPolicy())
-{
-    mRequests = vector<int>(other.getRequests());
-}
 
-State Party::getState() const
-{
-    return mState;
-}
 
-void Party::setState(State state)
-{
-    mState = state;
-}
-
-int Party::getMandates() const
-{
-    return mMandates;
-}
-
-const string & Party::getName() const
-{
-    return mName;
-}
 
 void Party::step(Simulation &s)
 {
     if (mTimer == 0) {
         const Agent &selectedAgent = (*mJoinPolicy).chooseAgent(s, mRequests);
         Coalition& coalition = s.getCoalitions()[selectedAgent.getCoalitionId()];
-        coalition.addParty(mId);
+        coalition.addParty(s, mId);
         s.recruitAgent(selectedAgent, *this);
         mState = Joined;
     }
@@ -60,9 +81,28 @@ void Party::addRequest(const Agent &agent){
     }
 }
 
-JoinPolicy * Party::getJoinPolicy() const
+State Party::getState() const
 {
-    return mJoinPolicy;
+    return mState;
+}
+
+int Party::getMandates() const
+{
+    return mMandates;
+}
+
+int Party::getTimer() const
+{
+    return mTimer;
+}
+
+JoinPolicy& Party::getJoinPolicy() const{
+    return *mJoinPolicy;
+}
+
+const string& Party::getName() const
+{
+    return mName;
 }
 
 const vector<int>& Party::getRequests() const
@@ -72,4 +112,18 @@ const vector<int>& Party::getRequests() const
 
 int Party::getId() const {
     return mId;
+}
+
+void Party::setState(State state)
+{
+    mState = state;
+}
+
+void Party::dismissJoinPolicy() {
+    mJoinPolicy = nullptr;
+}
+
+Party::~Party() {
+    if (mJoinPolicy != nullptr)
+        delete mJoinPolicy;
 }

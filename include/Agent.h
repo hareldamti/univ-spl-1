@@ -10,14 +10,23 @@ class Agent
 {
 public:
     Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy);
+    Agent(const Agent& other);
+    Agent(Agent&& other);
+    Agent& operator=(const Agent& other);
+    Agent& operator=(Agent&& other);
+    ~Agent();
 
     int getPartyId() const;
     int getId() const;
     int getCoalitionId() const;
-    void step(Simulation &);
+    SelectionPolicy& getSelectionPolicy() const;
+
     void setId(int id);
     void setCoalitionId(int id);
     void setPartyId(int id);
+    void dismissSelectionPolicy();
+
+    void step(Simulation &);
 
 private:
     int mAgentId;

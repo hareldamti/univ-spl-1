@@ -1,9 +1,32 @@
 #include "SelectionPolicy.h"
 #include "Simulation.h"
 
+SelectionPolicy::SelectionPolicy(){}
+SelectionPolicy::SelectionPolicy(const SelectionPolicy& other) {}
+SelectionPolicy::SelectionPolicy(SelectionPolicy&& other) {}
+SelectionPolicy& SelectionPolicy::operator=(const SelectionPolicy& other) {return *this;}
+SelectionPolicy& SelectionPolicy::operator=(SelectionPolicy&& other) {return *this;}
 SelectionPolicy::~SelectionPolicy(){}
 
 MandatesSelectionPolicy::MandatesSelectionPolicy(){}
+MandatesSelectionPolicy::MandatesSelectionPolicy(const MandatesSelectionPolicy& other) {}
+MandatesSelectionPolicy::MandatesSelectionPolicy(MandatesSelectionPolicy&& other) {}
+MandatesSelectionPolicy& MandatesSelectionPolicy::operator=(const MandatesSelectionPolicy& other) {return *this;}
+MandatesSelectionPolicy& MandatesSelectionPolicy::operator=(MandatesSelectionPolicy&& other) {return *this;}
+MandatesSelectionPolicy::~MandatesSelectionPolicy(){}
+
+EdgeWeightSelectionPolicy::EdgeWeightSelectionPolicy(){}
+EdgeWeightSelectionPolicy::EdgeWeightSelectionPolicy(const EdgeWeightSelectionPolicy& other) {}
+EdgeWeightSelectionPolicy::EdgeWeightSelectionPolicy(EdgeWeightSelectionPolicy&& other) {}
+EdgeWeightSelectionPolicy& EdgeWeightSelectionPolicy::operator=(const EdgeWeightSelectionPolicy& other) {return *this;}
+EdgeWeightSelectionPolicy& EdgeWeightSelectionPolicy::operator=(EdgeWeightSelectionPolicy&& other) {return *this;}
+EdgeWeightSelectionPolicy::~EdgeWeightSelectionPolicy(){}
+
+///TODO: Delete above
+
+
+MandatesSelectionPolicy* MandatesSelectionPolicy::clone(){ return new MandatesSelectionPolicy; }
+EdgeWeightSelectionPolicy* EdgeWeightSelectionPolicy::clone(){ return new EdgeWeightSelectionPolicy; }
 
 const int MandatesSelectionPolicy::choosePartyId(Simulation &s, Agent &agent)
 {
@@ -23,10 +46,6 @@ const int MandatesSelectionPolicy::choosePartyId(Simulation &s, Agent &agent)
     delete neighbors;
     return currPartyId;
 }
-
-MandatesSelectionPolicy::~MandatesSelectionPolicy(){}
-
-EdgeWeightSelectionPolicy::EdgeWeightSelectionPolicy(){}
 
 const int EdgeWeightSelectionPolicy::choosePartyId(Simulation &s, Agent &agent)
 {
@@ -48,5 +67,3 @@ const int EdgeWeightSelectionPolicy::choosePartyId(Simulation &s, Agent &agent)
     
     return currPartyId;
 }
-
-EdgeWeightSelectionPolicy::~EdgeWeightSelectionPolicy(){}

@@ -33,7 +33,7 @@ Party &Graph::getParty_(int partyId)
 vector<int> *Graph::getNeighborsIds(int v) const
 {
     vector<int> *neighbors = new vector<int>(0);
-    for (int u = 0; u < mVertices.size(); u++)
+    for (long unsigned int u = 0; u < mVertices.size(); u++)
         if (mEdges[v][u] > 0)
             neighbors->push_back(u);
     return neighbors;

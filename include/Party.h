@@ -25,17 +25,21 @@ public:
     Party(Party&& other);
     Party& operator=(const Party& other);
     Party& operator=(Party&& other);
-    
+    ~Party();
 
     State getState() const;
-    void setState(State state);
     int getMandates() const;
     int getId() const;
-    void step(Simulation &s);
+    int getTimer() const;
+    JoinPolicy& getJoinPolicy() const;
     const string &getName() const;
-    void addRequest(const Agent &agent);
-    JoinPolicy * getJoinPolicy() const;
     const vector<int>& getRequests() const;
+
+    void setState(State state);
+    void dismissJoinPolicy();
+
+    void step(Simulation &s);
+    void addRequest(const Agent &agent);
 
 private:
     int mId;

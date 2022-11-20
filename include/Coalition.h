@@ -7,12 +7,14 @@ class Simulation;
 
 class Coalition {
     public:
-        Coalition(int partyId, int id);
+        Coalition();
+        Coalition(int partyId, int id, Simulation& s);
         vector<int> getPartiesIds() const;
-        int mId;
-        int getMandates(const Simulation &sim) const;
-        void addParty(int partyId);
-        
+        int getMandates() const;
+        void addParty(const Simulation &sim, int partyId);
+
     private:
+        int mId;
+        int mMandates;
         vector<int> mPartiesIds;
 };
