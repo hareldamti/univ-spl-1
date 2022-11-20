@@ -3,6 +3,7 @@
 #include "Party.h"
 
 using std::vector;
+class Party;
 
 class Graph
 {

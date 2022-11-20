@@ -3,6 +3,9 @@
 #include <vector>
 #include "Graph.h"
 #include "Coalition.h"
+#include "Simulation.h"
+
+class Simulation;
 
 class SelectionPolicy;
 

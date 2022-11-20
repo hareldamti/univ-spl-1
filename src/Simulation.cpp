@@ -1,5 +1,5 @@
 #include "Simulation.h"
-#include "Coalition.h"
+
 
 Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents) 
 {
