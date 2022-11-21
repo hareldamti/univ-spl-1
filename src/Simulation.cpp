@@ -8,10 +8,6 @@ using namespace std;
 Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents), mCoalitions()
 {
     mCoalitions = vector<Coalition>();
-    // You can change the implementation of the constructor, but not the signature!
-}
-
-void Simulation::initializeCoalitions(){
     for (long unsigned int i=0; i<mAgents.size(); i++){
         Agent &agent = mAgents[i];
         Coalition coalition(agent.getPartyId(), i, *this);

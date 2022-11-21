@@ -13,7 +13,6 @@ public:
     Simulation(Graph g, vector<Agent> agents);
 
     void step();
-    void initializeCoalitions();
     bool shouldTerminate() const;
 
     const Graph &getGraph() const;
