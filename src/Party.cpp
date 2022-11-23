@@ -45,15 +45,17 @@ Party& Party::operator=(const Party &other){
 }
 
 Party& Party::operator=(Party &&other){
-    mId = other.getId();
-    mName = other.getName();
-    mMandates = other.getMandates();
-    if (mJoinPolicy != nullptr) delete mJoinPolicy;
-    mJoinPolicy = other.getJoinPolicy().clone();
-    mState = other.getState();
-    mTimer = other.getTimer();
-    mRequests = other.getRequests();
-    other.dismissJoinPolicy();
+    if(this != &other){
+        mId = other.getId();
+        mName = other.getName();
+        mMandates = other.getMandates();
+        if (mJoinPolicy != nullptr) delete mJoinPolicy;
+        mJoinPolicy = other.getJoinPolicy().clone();
+        mState = other.getState();
+        mTimer = other.getTimer();
+        mRequests = other.getRequests();
+        other.dismissJoinPolicy();
+    }
     return *this;
 }
 

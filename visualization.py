@@ -12,7 +12,7 @@ def state_to_color(state):
     elif state == 'Joined':
         return 'Red'
 
-def draw_graph(G, i, title):
+def draw_graph(G, i):
     pos = nx.circular_layout(G)
     nodes_data = G.nodes(data=True)
     colors = [state_to_color(data['state']) for _, data in nodes_data]
@@ -31,10 +31,9 @@ def draw_graph(G, i, title):
     if i == 0:
         ax.set_title(f'Initial state')
     else:
-        ax.set_title(title+f'Iteration {i - 1}')
+        ax.set_title(f'Iteration {i - 1}')
     plt.axis('off')
     plt.tight_layout()
-    plt.gcf().set_size_inches(7,7)
     plt.show()
 
 
@@ -47,7 +46,7 @@ def get_coalition(partyId, coalitions):
 if __name__ == '__main__':
     if len(sys.argv) != 2:
         print("Usage: python3 visualization.py <file_path>")
-        #exit(1)
+        exit(1)
     file_path = sys.argv[1]
     with open(file_path, 'r') as f:
         data = json.load(f)
@@ -59,7 +58,7 @@ if __name__ == '__main__':
                         name=party['name'], coalition=get_coalition(party['id'], simulation_state['coalitions']))
         for edge in simulation_state['edges']:
             G.add_edge(edge['from'], edge['to'], weight=edge['weight'])
-        draw_graph(G, i, file_path)
+        draw_graph(G, i)
 
 
 

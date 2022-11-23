@@ -31,12 +31,14 @@ Agent& Agent::operator=(const Agent& other) {
 }
 
 Agent& Agent::operator=(Agent&& other) {
-    mAgentId = other.getId();
-    mPartyId = other.getPartyId();
-    mCoalitionId = other.getCoalitionId();
-    if (mSelectionPolicy != nullptr) delete mSelectionPolicy;
-    mSelectionPolicy = &other.getSelectionPolicy();
-    other.dismissSelectionPolicy();
+    if (this != &other){
+        mAgentId = other.getId();
+        mPartyId = other.getPartyId();
+        mCoalitionId = other.getCoalitionId();
+        if (mSelectionPolicy != nullptr) delete mSelectionPolicy;
+        mSelectionPolicy = &other.getSelectionPolicy();
+        other.dismissSelectionPolicy();
+    }
     return *this;
 }
 
